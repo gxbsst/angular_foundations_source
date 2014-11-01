@@ -15,14 +15,14 @@
          * but this is easier to maintain.
          */
         'app.core',
-        'app.data', // needs core
-        'app.directive', // needs core
+        //'app.data', // needs core
+        'app.directives', // needs core
 
         /*
          * Feature areas
          */
 
-        'app.layout',
-        'app.session'
+        //'app.layout',
+        //'app.session'
     ]);
 })();

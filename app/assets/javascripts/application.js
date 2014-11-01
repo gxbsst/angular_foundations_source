@@ -31,6 +31,7 @@
 
 // Directive
 //= require directives/directives.module
+//= require directives/aDirective
 
 // Layout
 //= require layout/layout.module
@@ -40,4 +41,4 @@
 //= require todo/todo.controller
 
 
-//= require_tree .
+// require_tree .
