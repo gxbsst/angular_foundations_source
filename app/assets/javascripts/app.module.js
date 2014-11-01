@@ -16,7 +16,7 @@
          */
         'app.core',
         'app.data', // needs core
-        'app.widgets', // needs core
+        'app.directive', // needs core
 
         /*
          * Feature areas

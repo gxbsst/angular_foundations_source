@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://ruby.taobao.org'
 
 gem 'rails', '3.2.16'
 
@@ -20,6 +20,18 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+source 'https://rails-assets.org'
+
+gem 'rails-assets-angular', '~> 1.2.0'
+gem 'rails-assets-angular-route', '~> 1.2.0'
+gem 'rails-assets-angular-sanitize', '~> 1.2.0'
+gem 'rails-assets-angular-cache', '~> 2.3.7'
+
+group :development, :test do
+  gem 'spring'
+  gem 'rails-assets-angular-mocks'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
