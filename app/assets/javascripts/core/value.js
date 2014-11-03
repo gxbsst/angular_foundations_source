@@ -3,8 +3,8 @@
 
     angular
         .module('app.core')
-        .constant({
+        .value({
             website:'TODO APP',
-            description: 'web description'
+            myValue: 'myValue'
         })
 })();

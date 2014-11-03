@@ -21,6 +21,7 @@
 // Core
 //= require core/core.module
 //= require core/constant
+//= require core/value
 
 // Blocks
 //= require blocks/router/router.module
