@@ -1,10 +1,11 @@
 describe('Apply', function(){
     var element;
-    var $scope;
+    var elementWithoutApply;
+    var $scope, $scopeWithoutApply;
     var app = angular.module('app');
-    app.directive('contentItem', contentItem);
+    app.directive('contentItemWithApply', contentItemWithApply);
 
-    function contentItem(){
+    function contentItemWithApply(){
         var linker = function (scope, element, attrs) {
             element.on('click', function(){
                 console.log('click fired!');
@@ -23,10 +24,12 @@ describe('Apply', function(){
             controller: controller
         };
     }
+
     beforeEach(module('app'));
     beforeEach(inject(function($compile, $rootScope){
         $scope = $rootScope.$new();
-        element = angular.element('<div content-item><h2>{{count}}</h2></div>');
+        $scopeWithoutApply = $rootScope.$new();
+        element = angular.element('<div content-item-with-apply><h2>{{count}}</h2></div>');
         $compile(element)($scope);
     }));
 
@@ -34,9 +37,28 @@ describe('Apply', function(){
         $scope.$digest();
         expect(element.find('h2').html()).toBe("0")
     })
-    it("should equal 1", function(){
-        $scope.$digest();
-        browserTrigger(element, "click");
-        expect(element.find('h2').html()).toBe("1")
-    })
+
+    describe('with $apply', function(){
+        it("should equal 1", function() {
+            $scope.$digest();
+            browserTrigger(element, "click");
+            expect(element.scope().count).toBe(1);
+            expect(element.find('h2').html()).toBe("1");
+        });
+    });
+
+    describe('without $apply', function(){
+       beforeEach(inject(function(){
+           spyOn($scope, "$apply").and.callFake(function() {
+               return true;
+           });
+       }));
+
+        it("should equal 1", function() {
+            $scope.$digest();
+            browserTrigger(element, "click");
+            expect(element.scope().count).toBe(0);
+            expect(element.find('h2').html()).toBe("0");
+        });
+    });
 });
