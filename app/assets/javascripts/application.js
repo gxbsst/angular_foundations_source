@@ -9,11 +9,18 @@
 //
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
+
 //= require jquery
+//= require lodash
 //= require angular
 //= require angular-route
 //= require angular-sanitize
-//= require angular-cache
+//= require restangular
+// require angular-cache
+
+// Templates
+//= require angular-rails-templates
+//= require_tree ../templates
 
 // Bootstrapping
 //= require app.module
@@ -22,6 +29,7 @@
 //= require core/core.module
 //= require core/constant
 //= require core/value
+//= require core/config
 
 // Blocks
 //= require blocks/router/router.module
@@ -29,17 +37,22 @@
 
 // Service
 //= require services/service.module
+//= require services/todo.service
 
 // Directive
 //= require directives/directives.module
-//= require directives/aDirective
+//= require directives/todoEscape
+//= require directives/todoFocus
 
 // Layout
 //= require layout/layout.module
 
 // todos
 //= require todo/todo.module
+//= require todo/todo.route
 //= require todo/todo.controller
 
-
 // require_tree .
+// 修复测试找不到module的错误
+//angular.module('templates', []);
+//angular.module("<%= Rails.configuration.angular_templates.module_name %>", []);

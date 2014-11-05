@@ -1,17 +1,20 @@
 (function () {
     'use strict';
-
     angular.module('app.core', [
         /*
          * Angular modules
          */
         'ngRoute', 'ngSanitize',
 
+        //'restangular',
+        'restangular',
+
         /*
          * Our reusable cross app code modules
          */
         //'blocks.exception', 'blocks.logger', 'blocks.router',
-
+        'blocks.router',
+        'templates'
         /*
          * 3rd Party modules
          */

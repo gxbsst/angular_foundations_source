@@ -2,5 +2,5 @@
     'use strict';
 
     angular
-        .module('service', []);
+        .module('app.service', []);
 })();
