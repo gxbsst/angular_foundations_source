@@ -19,7 +19,7 @@
         function link(scope, element, attrs) {
             element.bind('keydown', function (event) {
                 if (event.keyCode === ESCAPE_KEY) {
-                    scope.$apply(attrs.todoEscape);
+                  scope.$apply(attrs.todoEscape);
                 }
             });
         }

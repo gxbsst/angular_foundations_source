@@ -8,7 +8,6 @@ describe('Apply', function(){
     function contentItemWithApply(){
         var linker = function (scope, element, attrs) {
             element.on('click', function(){
-                console.log('click fired!');
                 scope.$apply(function() {
                     scope.count++;
                 });

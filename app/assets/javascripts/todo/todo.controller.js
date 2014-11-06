@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app')
+    .module('app.todo')
     .controller('TodosController', TodosController);
 
   TodosController.$inject = ['$scope','$routeParams', '$filter', 'Restangular'];
@@ -10,11 +10,10 @@
   function TodosController($scope, $routeParams, $filter, Restangular) {
     /*jshint validthis: true */
     var vm = this;
-    var todos = vm.todos = [];
+    vm.todos = [];
     vm.status = '';
     vm.statusFilter = null;
     vm.todo = {};
-    vm.editedTodo = null;
     vm.originalTodo = null;
     vm.editedTodo = null;
 
@@ -27,26 +26,27 @@
     vm.markAll = markAll;
     vm.completed = completed;
 
-    $scope.$watch('todoCtrl.todos', completedCalculate, true);
+    //$scope.$watch('todoCtrl.todos', completedCalculate, true);
+    $scope.$watch(function(){ return vm.todos; }, completedCalculate, true);
     $scope.$on('$routeChangeSuccess', handleRouteChange);
 
-    loadAll();
+    loadTodos();
 
-    function loadAll() {
-      Restangular.all('todos').getList().then(function(allTodos){
-        todos = vm.todos = allTodos;
+    function loadTodos() {
+      Restangular.all('todos').getList().then(function(todos){
+        vm.todos = todos;
       });
     }
 
     function completed(todo) {
-      Restangular.one('todos', todo._id).get().then(function(td){
-        td.completed = todo.completed;
-        td.put();
+      Restangular.one('todos', todo._id).get().then(function(resquestTodo){
+        resquestTodo.completed = todo.completed;
+        resquestTodo.put();
       });
     }
 
     function handleRouteChange(){
-      var status = vm.status = $routeParams.status || '';
+      vm.status = $routeParams.status || '';
 
       vm.statusFilter = (status === 'active') ?
       { completed: false } : (status === 'completed') ?
@@ -61,7 +61,7 @@
 
     function addTodo() {
       Restangular.all('todos').post({todo: vm.todo}).then(function(todos){
-        vm.todos.push(vm.todo);
+        vm.todos.unshift(vm.todo);
         vm.todo = {};
       })
     }

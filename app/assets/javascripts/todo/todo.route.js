@@ -18,25 +18,15 @@
             {
                 url: '/todos',
                 config: {
-                    title: 'todos',
                     controller: 'TodosController',
-                    templateUrl: 'todos/index.html',
-                    settings: {
-                        nav: 2,
-                        content: '<i class="fa fa-calendar"></i> Sessions'
-                    }
+                    templateUrl: 'todos/index.html'
                 }
             },
             {
                 url: '/todos/:status',
                 config: {
-                    title: 'todos',
                     controller: 'TodosController',
-                    templateUrl: 'todos/index.html',
-                    settings: {
-                        nav: 2,
-                        content: '<i class="fa fa-calendar"></i> Sessions'
-                    }
+                    templateUrl: 'todos/index.html'
                 }
             }
         ];
